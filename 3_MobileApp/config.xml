@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.github.mgalbright.usajobtool" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>UsajobTool</name>
+    <description>
+        App to search for US government jobs via the usajobs.gov open API.
+    </description>
+    <author href="https://github.com/mgalbright/">
+        Michael Albright
+    </author>
+    <content src="index.html" />
+    <!--====================================================================-->
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <!--
+    Notes: The cordova-plugin-whitelist is a security plugin that lets you
+    tightly control what URLs the app can communicate with or open in a 
+    browser.  The default Cordova settings allow the app to talk to anything
+    (to ease development), but you should lock down the app's
+    permissions before deployment.
+    
+    Details: https://github.com/apache/cordova-plugin-whitelist
+
+    <access origin= > tags specify what websites the app can communicate with.
+    <allow-intent href= > tags specify what links the app can open
+
+    Note: for extra security, it's also recommended to add a Content-Security-
+    Policy meta tag to your html pages.  See index.html for my example.
+    -->
+
+    <!--Use these permissions for testing/development only:
+    <allow-intent href="http://*/*" />      
+    <allow-intent href="https://*/*" />   
+    <allow-intent href="tel:*" />         
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" /> 
+    -->
+
+    <!--Use more restrictive permissions for deployment for added security.-->
+    <!--The first only allows communication with the usajobs.gov api site,
+        the second only allows links to open from the usajobs site-->
+<!--UPDATE THESE TWO LINKs IF THE USAJOBS API ADDRESS CHANGES-->
+    <access origin="https://data.usajobs.gov/api/*" />
+    <allow-intent href="https://www.usajobs.gov/*" />
+    <!--====================================================================-->
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <engine name="android" spec="~6.0.0" />
+</widget>

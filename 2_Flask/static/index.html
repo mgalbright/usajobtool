@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Usajobs Search Tool</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Bootstrap-->
+  <link rel="stylesheet" type="text/css" href="static/include/DataTables/Bootstrap-3.3.7/css/bootstrap.min.css"  />
+
+  <!--dataTables bootstrap styling-->
+  <link rel="stylesheet" type="text/css" href="static/include/DataTables/DataTables-1.10.13/css/dataTables.bootstrap.min.css"  />
+
+</head>
+
+
+<body>
+  <div class="container-fluid">
+
+  <!--Bootstrap navbar at top of page, gives several buttons/views-->
+
+  <nav class="navbar navbar-inverse"> 
+  <div class="container-fluid">
+
+    <!--Navbar header-->
+    <div class="navbar-header">
+
+      <!--On small devices, the navbar can be collapsed/expanded with
+          this tiny button-->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" 
+         data-target="#pageNavbarCollapse">
+         <span class="sr-only">Toggle navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+      </button>
+
+      <!--Page name (called brand in Bootstrap)-->
+      <a class="navbar-brand" href="#">Usajobs Tool</a>
+    </div>
+
+    <!--==================navbar body, with navbar buttons==================-->
+    <div class="collapse navbar-collapse" id="pageNavbarCollapse">
+      <ul class="nav navbar-nav">
+
+        <!--Basic Search view button-->
+        <li class="active"><a data-toggle="tab" href="#basicSearchDiv">
+          Basic Search</a></li>
+
+        <!--Advanced Search view button-->
+        <li><a data-toggle="tab" href="#advancedSearchDiv">Advanced Search</a>
+        </li>
+
+        <!--Dropdown Settings button-->
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" data-toggle="modal" data-toggle="tooltip" 
+              data-placement="top" title="Export app settings to JSON string"
+              data-target="#exportSettingsModal">Export Settings</a></li>
+
+            <li><a href="#" data-toggle="modal" data-toggle="tooltip" 
+              data-placement="top" title="Import app settings from JSON string"
+              data-target="#importSettingsModal">Import Settings</a></li>
+
+            <li><a href="#" data-toggle="modal" data-toggle="tooltip" 
+              data-placement="top" title="Create custom app settings"
+              data-target="#createSettingsModal" >Create Settings</a></li>
+
+            <li><a href="#" id="settingsDefaultBtn" data-toggle="tooltip" 
+              data-placement="top" title="Restore app settings to default">
+              Use Default Settings</a>
+            </li>
+
+            <li role="separator" class="divider"></li>
+
+            <li><a href="#" data-toggle="modal" data-toggle="tooltip" 
+              data-placement="top" title="More about this program" 
+              data-target="#aboutModal">About</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  </nav>
+
+
+  <!--Content for tabs in navbar, gives different views-->
+  <div class="tab-content">
+
+    <!--Basic search view-->
+    <div id="basicSearchDiv" class="tab-pane fade in active">
+      <!--Button and keyword input text box, for simple keyword searching-->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+
+            <span class="input-group-btn">
+            <button id="basicSearchBtn" class="btn btn-default" type="button">
+            Search</button>
+            </span>
+
+            <input id="basicKeywordInputBox" type="text" class="form-control" 
+            placeholder="Job keyword">
+
+          </div>
+        </div>
+      </div>
+
+      <p></p>
+
+      <!--Bootstrap alert, show if error: empty basic search input button-->
+      <div class="alert alert-info fade in" id="errorEmptyBasicSearch" 
+      style="display: none;">
+        <a href="#" class="close" aria-label="close">&times;</a>
+        <strong>Warning!</strong> Empty search.
+      </div>
+
+    </div>
+
+    <!--Advanced searching view-->
+    <div id="advancedSearchDiv" class="tab-pane fade">
+
+      <form>
+        <!--Give each input box a special class: advInputBox, use it
+          to tell if user presses enter in any one of them.-->
+
+        <!--Keyword input box for advanced search-->
+        <div class="form-group">
+          <input type="text" class="form-control advInputBox" 
+          id="advKeywordInputBox" placeholder="Job keyword">
+        </div>
+
+        <!--An input box for job Series code and a dropdown button
+            to auto fill it-->
+        <div class="form-group">
+        <div class="input-group">
+
+          <input type="text" class="form-control advInputBox" 
+          id="advSeriesInputBox" 
+          placeholder="Job Series code (4-digit number)">
+
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" 
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Codes<span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#" data-jobseries="2210" class="jobSeriesLink">
+                2210 (Info Technology)</a></li>
+
+              <li><a href="#" data-jobseries="1500" class="jobSeriesLink">
+                1500 (Mathematics)</a></li>
+
+              <li><a href="#" data-jobseries="0800" class="jobSeriesLink">
+                0800 (Engineering)</a></li>
+
+              <li><a href="#" data-jobseries="1310" class="jobSeriesLink">
+                1310 (Physics)</a></li>
+
+              <li><a href="#" data-jobseries="1320" class="jobSeriesLink">
+                1320 (Chemistry)</a></li>
+
+              <li><a href="#" data-jobseries="0400" class="jobSeriesLink">
+                0400 (Biology)</a></li>
+
+              <li><a href="#" data-jobseries="0200" class="jobSeriesLink">
+                0200 (Human Resources)</a></li>
+
+              <li><a href="#" data-jobseries="0500" class="jobSeriesLink">
+                0500 (Accounting)</a></li>
+
+              <!--The URL is set in jQuery, to avoid hardcoding it-->
+              <li><a href="#" target="_blank" id="MoreJobSeriesCodesURL">
+              More codes</a></li>
+
+            </ul>
+          </div>
+        </div>
+        </div>
+
+        <!--Bootstrap alert, show if invalid job Series code, start hidden-->
+        <div class="alert alert-info fade in" id="errorInvalidJobSeries" 
+        style="display: none;">
+          <a href="#" class="close" aria-label="close">&times;</a>
+          <strong>Warning!</strong> Job Series code must be a 4-digit number.
+        </div>
+          
+        <!--City input text box-->
+        <div class="form-group">
+          <input type="text" class="form-control advInputBox" 
+          id="advCityInputBox" placeholder="City name">
+        </div>
+
+        <!--Zip code input text box-->
+        <div class="form-group">
+          <input type="text" class="form-control advInputBox" 
+          id="advZipCodeInputBox" placeholder="Zip code">
+        </div>
+
+        <!--Advanced Search button-->
+        <button id="advSearchBtn" class="btn btn-default" type="button">
+        Search</button>
+
+        <p></p>
+
+        <!--Bootstrap alert, show if advanced search is empty, start hidden-->
+        <div class="alert alert-info fade in" id="errorEmptyAdvSearch" 
+        style="display: none;">
+          <a href="#" class="close" aria-label="close">&times;</a>
+          <strong>Warning!</strong> Empty search.
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+  <!--Bootstrap alert, show if error connecting to usajobs.gov-->
+  <div class="alert alert-danger fade in" id="errorAjaxGetFailed" 
+  style="display: none;">
+    <a href="#" class="close" aria-label="close">&times;</a>
+    <strong>Warning!</strong> Failed to retrieve data from the usajobs.gov 
+    server. Check your network connection.
+  </div>
+
+  <!--Bootstrap alert, show if HTML5 localStorage is unavailable-->
+  <div class="alert alert-danger fade in" id="errorNoLocalStorage" 
+  style="display: none;">
+    <a href="#" class="close" aria-label="close">&times;</a>
+    <strong>Warning!</strong> This page will not be able to remember its 
+    settings. Please enable HTML5 localStorage.
+  </div>
+
+  <!--Bootstrap alert, show if machine learning settings are corrupted-->
+  <div class="alert alert-danger fade in" id="ErrorBadMLSettings" 
+  style="display: none;">
+    <a href="#" class="close" aria-label="close">&times;</a>
+    <strong>Warning!</strong> This site's machine learning settings 
+    are corrupted, reverting to default settings.
+  </div>
+
+  <p></p>
+  
+  <!--Table to hold Job results. Starts invisible, show when styled as 
+   jQuery dataTable-->
+  <div id="divJobsTable" style="display: none;">
+  <table id="jobsTable" class="table table-striped" width="100%">
+    <thead>
+      <tr>
+        <th>Score</th>
+        <th>Action</th>
+        <th>JobTitle</th>
+      </tr>
+    </thead>
+  </table>
+  </div>
+
+
+  <!--======================================================================-->
+  <!--Bootstrap modals-->
+
+  <!--Modal to view detailed job description-->
+  <div class="modal fade" id="jobInfoModal" tabindex="-1" role="dialog" 
+  aria-labelledby="jobInfoModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" 
+        aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+
+        <!--==================Modal Title======================-->
+        <h4 class="modal-title" id="modal_JI_ModalTitle">Job Details</h4>
+        </div>
+
+        <!--===============Summarize job info=============-->
+        <div class="modal-body">
+
+          <h4>Title:</h4>
+          <p id="modal_JI_JobTitle"></p>
+
+          <h4>Agency:</h4>
+          <p id="modal_JI_Agency"></p>  
+
+          <h4>Salary:</h4>
+          <p id="modal_JI_Salary"></p>
+
+          <h4>Location:</h4>
+          <p id="modal_JI_Location"></p>
+
+          <h4>Description:</h4>
+          <p id="modal_JI_JobDescript"></p>
+        </div>
+
+
+        <div class="modal-footer">
+
+        <!--Buttons for user to rate the job-->
+        <div class="btn-group pull-left dropup">
+        <button type="button" class="btn btn-primary dropdown-toggle" 
+        data-toggle="dropdown" aria-expanded="false">
+        Rate <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+
+          <!--====Like and Don't Like buttons====-->
+          <li><a href="#" id="modal_JI_Like" data-documentid="">Like</a></li>
+          <li><a href="#" id="modal_JI_DontLike" data-documentid="">
+          Don't Like</a></li>
+        </ul>
+        </div>
+
+        <!--Close modal button-->
+        <button type="button" class="btn btn-default pull-left" 
+        data-dismiss="modal">Close</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!--Modal giving info about this program-->
+  <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" 
+  aria-labelledby="aboutModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" 
+          aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+
+          <!--Modal Title-->
+          <h4 class="modal-title">About</h4>
+        </div>
+
+        <!--===============About this program============-->
+        <div class="modal-body">
+          This site is a cross-platform, mobile-friendly web app for searching
+          <a href="#" id="AboutModalUsajobsHomeLink" 
+          target="_blank">usajobs.gov</a>.
+          The app uses
+          machine learning (bag of words features + online logistic regression) 
+          to rank jobs based on job title and summary, then sorts the jobs to
+          display the most interesting jobs first.  You may
+          rate jobs (like/don't like), and the machine learning
+          settings will be updated: the app will learn your preferences.  
+
+          <p></p>
+
+          Details: This page runs entirely locally (in the browser) 
+          using javascript, jQuery, and HTML5.  It is
+          styled (mobile friendly) using Bootstrap.  
+          It obtains its data using the usajobs.gov open 
+          <a href="#" id="AboutModalUsajobsDataLink" target="_blank">
+          REST API</a>.
+          Machine learning settings are stored in HTML5 local storage. 
+          You may export/import settings if using this app across multiple 
+          devices.
+        </div>
+
+        <div class="modal-footer">
+          <!--Close modal button-->
+          <button type="button" class="btn btn-default pull-left"  
+          data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--===========Modal to export siteSettings===========================-->
+  <div class="modal fade" id="exportSettingsModal" tabindex="-1" 
+  role="dialog" aria-labelledby="exportSettingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" 
+          aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+
+          <!--==================Modal title======================-->
+          <h4 class="modal-title">Export Settings</h4>
+        </div>
+
+        <!--===============Modal output textbox============-->
+        <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label for="Export site settings">Exported site settings 
+              (for machine learning).</label>
+            <textarea class="form-control" rows="10"
+              id="modalExportSettingsBox"></textarea>
+          </div>
+        </form> 
+        </div>
+
+        <div class="modal-footer">
+        <!--Close modal button-->
+        <button type="button" class="btn btn-default pull-left"  
+        data-dismiss="modal">Close</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--===========Modal to import siteSettings===========================-->
+  <div class="modal fade" id="importSettingsModal" tabindex="-1" 
+  role="dialog" aria-labelledby="importSettingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" 
+          aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+
+          <!--==================Modal title======================-->
+          <h4 class="modal-title">Import Settings</h4>
+        </div>
+
+        <!--===============Modal settings input textbox============-->
+        
+        <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label for="Import site settings">Paste site settings
+            (a JSON structure) below.</label>
+            <textarea class="form-control" rows="10"
+              id="modalImportSettingsBox"></textarea>
+          </div>
+        </form> 
+        </div>
+        
+        <!--Bootstrap alert, show if input JSON is invalid-->
+        <div class="alert alert-info fade in" id="errorBadImportJSONString" 
+        style="display: none;">
+          <a href="#" class="close" aria-label="close">&times;</a>
+          <strong>Warning!</strong> The import settings JSON does not appear
+          to be properly formatted.  Import failed.
+        </div>
+
+
+        <div class="modal-footer">
+
+        <!--Import settings button-->
+        <button type="button" class="btn btn-primary pull-left" 
+        id="modalimportImportBtn">Import</button>
+
+        <!--Close modal button-->
+        <button type="button" class="btn btn-default pull-left"  
+        data-dismiss="modal">Close</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!--===========Modal to create siteSettings from good/bad keywords========-->
+  <div class="modal fade" id="createSettingsModal" tabindex="-1" 
+  role="dialog" aria-labelledby="createSettingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" 
+          aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+
+          <!--==================Modal title======================-->
+          <h4 class="modal-title">Create Settings</h4>
+        </div>
+
+        <!--===============Modal body============-->
+        <div class="modal-body">
+
+        Enter keywords in the boxes below.  These keywords
+        will be used in the machine learning code rank and sort jobs.
+
+        Separate the keywords by commas.  
+        Try to  use root words (which are more likely to occur)
+        like <i>mathemat, data scien</i> instead of 
+        <i>mathematician, data scientist</i>.  
+        
+        <p></p>
+
+        <!--Good keywords-->
+        <form role="form">
+          <div class="form-group">
+            <label for="Create site settings">Enter keywords found
+            in jobs you like.</label>
+            <textarea class="form-control" rows="4"
+              id="modalCreateGoodKWsBox"
+              placeholder="mathemat, data scien, computer scien"></textarea>
+          </div>
+        </form> 
+
+        <!--Bad keywords-->
+        <form role="form">
+          <div class="form-group">
+            <label for="Create site settings">Enter keywords found
+            in jobs you don't like.</label>
+            <textarea class="form-control" rows="4"
+              id="modalCreateBadKWsBox"
+              placeholder="bartend, waiter, clerk"></textarea>
+          </div>
+        </form> 
+        </div>
+        
+        <!--Bootstrap alert, show if input keywords are invalid-->
+        <div class="alert alert-info fade in" id="errorBadKeywordStrings" 
+        style="display: none;">
+          <a href="#" class="close" aria-label="close">&times;</a>
+          <strong>Warning!</strong> The keyword strings are not valid.
+          Make sure you have entered at least one keyword. Separate
+          keywords by commas.
+        </div>
+
+        <!--=================================-->
+
+        <div class="modal-footer">
+
+        <!--create settings button-->
+        <button type="button" class="btn btn-primary pull-left" 
+        id="modalcreateCreateBtn">Create</button>
+
+        <!--Close modal button-->
+        <button type="button" class="btn btn-default pull-left"  
+        data-dismiss="modal">Close</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!--======================================================================-->
+  <!--jQuery-->
+  <script type="text/javascript" src="static/include/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
+  <!--jQuery dataTables-->
+  <script type="text/javascript" src="static/include/DataTables/datatables.min.js"></script> 
+
+  <!--dataTables Bootstrap styling-->
+  <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script> 
+ -->
+
+  <!--Boostrap javascript-->
+  <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>  -->
+ 
+  <!--My javascript code here-->
+  <script type="text/javascript" src="static/js/usaSettings.js"></script>
+  <script type="text/javascript" src="static/js/usaConnection.js"></script>
+  <script type="text/javascript" src="static/js/usaMain.js"></script>
+  
+</body>
+
+</html>

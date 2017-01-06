@@ -1,10 +1,53 @@
-# usajobtool
+# Usajobs Search Tool
+
 A web app for searching usajobs.gov
 
-This site is a cross platform, mobile friendly web app for searching usajobs.gov (https://www.usajobs.gov). Beyond searching, this page uses machine learning (online logistic regression) to rank jobs based on job title and summary, then sorts the jobs to display the most interesting jobs first. You may rate jobs (like/don't like), and the machine learning settings will be updated: the app will learn what kinds of jobs you like or don't like.  
+# Quick Start
 
-Details: 
-This page runs entirely locally (in the browser) using javascript, jQuery, and HTML5.  It is styled (mobile friendly) using Bootstrap. It obtains its data using the usajobs.gov open REST API (https://data.usajobs.gov). Machine learning settings are stored in HTML5 local storage. You may export/import settings if using this app across multiple devices. You may also create new machine learning settings by inputting keywords present in jobs that you like and don’t like.  (Try to use root words that are more likely to occur, e.g. mathemat instead of mathematician or mathematics.)
+1. Clone this git repository
+2. Read *1_WebExtension/README.md* to learn how to install
+the browser extension from *1_WebExtension/WebExtension* into either Chrome or Firefox.
+Once it's installed, open *1_WebExtension/Webapp/index.html* in your browser 
+and begin your job search.
 
-Warning: 
-usajobs.gov (https://data.usajobs.gov/) will update their REST API to version 5.2 in October, 2015.  At that time, this application will cease functioning.  Unfortunately, API v5.2 effectively blocks JavaScript-based applications like this one:  first, the new API requires a modified User-Agent in the HTTP header, but web browsers explicitly prevent AJAX from changing the User-Agent for security reasons.  Second, v5.2 does not appear to support cross-origin resource sharing.  I am investigating the feasibility of converting this web app into a Chrome extension to bypass the security restrictions. 
+# Background
+
+As recently as 2015, the [usajobs.gov](https://www.usajobs.gov) website
+was not mobile friendly--it was painful to use on mobile devices, 
+and job search results were often not 
+that great--searches for 'mathematician' would include results for 
+bartenders and waiters (who need 'math' skills), and 'spark' (the data science
+tool) would return results for auto mechanics (who change 'spark' plugs).
+
+To improve user experiences, in 2015 I made version 1 of this tool--a cross-platform, 
+mobile-friendly web app for searching usajobs.gov. 
+The app allowed users to search for jobs using the usagovs.gov open 
+[API](https://developer.usajobs.gov/General), and it styled results using 
+Bootstrap so they looked great on phones, tablets, and PCs. 
+As an added feature, the app included a configurable online machine learning
+algorithm to learn user preferences and show the most interesting jobs first.
+
+To enhance user privacy, version 1 of this app ran entirely in the user browser using 
+javascript and HTML5.  
+
+In October 2015, version 5.2 of the usajobs.gov API broke this app and 
+made it impossible to query the API from javascript in browsers.
+(The new API requires you rewrite the HTTP headers, but 
+browsers prevent javascript from doing this.)
+
+Hence, I have released version 2 of the tool.  In the release, 
+I developed three ways to rewrite the HTTP headers:
+1. I built a browser extension.  You can find it in the folder *1_WebExtension*.
+2. I built minimal back end in Flask that can be used to host the website. 
+  The Flask backend takes care of changing the HTTP headers.  See *2_Flask*.
+3. I used Apache Cordova to port the web app to a native Android app.
+  See *3_MobileApp*.
+
+All three versions of the tool look the same to the user.
+
+
+## Screenshot:
+
+![Screenshot of usajobs search tool](img.png)
+
+

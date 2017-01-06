@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.github.mgalbright.usajobtool" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>UsajobTool</name>
+    <description>
+        App to search for US government jobs via the usajobs.gov open API.
+    </description>
+    <author href="https://github.com/mgalbright/">
+        Michael Albright
+    </author>
+    <content src="index.html" />
+    <access origin="https://data.usajobs.gov/api/*" />
+    <allow-intent href="https://www.usajobs.gov/*" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
+</widget>

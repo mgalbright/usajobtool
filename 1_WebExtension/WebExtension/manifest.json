@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "Usajobs Search Tool",
+  "description": "Changes HTTP headers for requests to usajobs.gov API to add API key.",
+  "version": "2.0",
+  "homepage_url": "https://github.com/mgalbright",
+
+  "permissions": [
+    "webRequest", "webRequestBlocking", "https://data.usajobs.gov/api/*"
+  ],
+  "background": {
+    "scripts" : ["usaAPI.js", "background.js"]
+  }
+}
