@@ -57,12 +57,12 @@ environments (e.g. Android, IOS, ...). See the
  ```javascript
  document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
  ```  
- This will call the ```onDeviceReady()``` function to carry out any further
+ This will call the `onDeviceReady()` function to carry out any further
  device initialization--feel free to add code there.
- The 'deviceready' listener can be set by calling ```app.initialize()```.
- In the hello world example, ```app.initialize()```
+ The 'deviceready' listener can be set by calling `app.initialize()`.
+ In the hello world example, `app.initialize()`
  is called from *index.js*.  However, since I use jQuery, and I want that 
- to happen only once the DOM is loaded, I call ```app.initialize()``` from 
+ to happen only once the DOM is loaded, I call `app.initialize()` from 
  the end of  
 ```javascript
  $(document).ready(function(){  
