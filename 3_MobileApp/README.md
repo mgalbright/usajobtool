@@ -16,25 +16,25 @@ development tools for Cordova and Android.)
 
 1. Download this git repository if you have not already done so.
 2. From a terminal cd into *3_MobileApp/*
-3. Build the project for Android: From the terminal type:
-```bash
-cordova build android
-```
-4. Run the project in an emulator: 
-```bash
-cordova emulate android
-```
-Note that you can debug the running program from Chrome:
-in the address bar paste [chrome://inspect/#devices](chrome://inspect/#devices),
-find the program under *Remote Target*, and click *Inspect*.
-5. To install the app on your Android device:
+3. Build the project for Android: From the terminal type:  
+ ```bash
+ cordova build android
+ ```
+4. Run the project in an emulator:   
+ ```bash
+ cordova emulate android
+ ```  
+ Note that you can debug the running program from Chrome:
+ in the address bar paste [chrome://inspect/#devices](chrome://inspect/#devices),
+ find the program under *Remote Target*, and click *Inspect*.
+5. To install the app on your Android device:  
     1. Make sure you have enabled Developer options and USB debugging on your device.
     2. Connect your device to your PC via USB.
     3. On your phone, change the USB option from *USB for charging* to *Transfer Files*.
-    4. From the terminal type:
-```bash
-cordova run android --device
-```
+    4. From the terminal type:  
+        ```bash
+        cordova run android --device
+        ```
 
 ## Extra links:
 
