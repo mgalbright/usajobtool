@@ -65,11 +65,11 @@ environments (e.g. Android, IOS, ...). See the
  to happen only once the DOM is loaded, I call ```app.initialize()``` from 
  the end of  
 ```javascript
-$(document).ready(function(){  
-  ...  
-  app.initialize();  
-});  
-```
+ $(document).ready(function(){  
+   ...  
+   app.initialize();  
+ });  
+ ```
  in *usaMain.js*.  
  Further references: Stackoverflow [1](http://stackoverflow.com/a/23201738),
  [2](http://stackoverflow.com/a/12576086),
@@ -79,12 +79,12 @@ $(document).ready(function(){
  such as app pause and resume or phone back button presses. For details
  see the Cordova docs for [Events](https://cordova.apache.org/docs/en/latest/cordova/events/events.html).
 11. (Optional) For faster responsiveness on mobile devices 
-  (avoid a possible 300ms click delay), add the 
-  [fastclick](https://github.com/ftlabs/fastclick) library to your project:
-   Simply add *fastclick.js* to the *js* folder and include 
-   *fastclick.js* in index.html.  Also intialize fastclick after the 
-   DOM has finished loading.  In jQuery, it looks like this:
- ```javascript
+ (avoid a possible 300ms click delay), add the 
+ [fastclick](https://github.com/ftlabs/fastclick) library to your project:
+  Simply add *fastclick.js* to the *js* folder and include 
+  *fastclick.js* in index.html.  Also intialize fastclick after the 
+  DOM has finished loading.  In jQuery, it looks like this:
+```javascript
  $(document).ready(function(){
    ...
    app.initialize();
