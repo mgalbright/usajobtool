@@ -10,8 +10,10 @@ I built this app for Android, but it is easy to rebuild the app
 for ios or other platforms.  
 
 ## Quick instructions to rebuild and run the app:
+
 (This assumes you are on a *nix system and have installed
 development tools for Cordova and Android.)
+
 1. Download this git repository if you have not already done so.
 2. From a terminal cd into *3_MobileApp/*
 3. Build the project for Android: From the terminal type:

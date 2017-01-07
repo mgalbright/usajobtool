@@ -7,6 +7,7 @@ which enables the connection to the Usajobs.gov API.)
  
 
 To test this web app:
+
 1. Download this git repository if you have not already done so.
 2. Request a free API key from the usajobs.gov [developer site](https://developer.usajobs.gov/APIRequest/Index).
 Enter your API key information in *2_Flaskl/app.py*.
@@ -23,11 +24,3 @@ you should be able to search for jobs.
 6. Press Ctrl+c in the terminal to stop the web server.
 7. Optional: it's possible to deploy the app to the internet.  See the
 Flask [Deployment Options](http://flask.pocoo.org/docs/0.12/deploying/).
-
-
-
-
-
-
-
-

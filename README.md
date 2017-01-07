@@ -36,9 +36,10 @@ made it impossible to query the API from javascript in browsers.
 browsers prevent javascript from doing this.)
 
 Hence, I have released version 2 of the tool.  In the release, 
-I developed three ways to rewrite the HTTP headers:
+I developed three ways to rewrite the HTTP headers: 
+
 1. I built a browser extension.  You can find it in the folder *1_WebExtension*.
-2. I built minimal back end in Flask that can be used to host the website. 
+2. I built minimal back end in Flask that can be used to host the website.
   The Flask backend takes care of changing the HTTP headers.  See *2_Flask*.
 3. I used Apache Cordova to port the web app to a native Android app.
   See *3_MobileApp*.
@@ -49,5 +50,3 @@ All three versions of the tool look the same to the user.
 ## Screenshot:
 
 ![Screenshot of usajobs search tool](img.png)
-
-

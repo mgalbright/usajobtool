@@ -16,9 +16,9 @@ environments (e.g. Android, IOS, ...). See the
 This creates a folder *FOLDER-NAME* with a hello world project 
 inside.  *APP-NAME* is the app name.  Replace com.yourdomain.projectname
 with your project identifier.  
-
 Note: Cordova follows the Android package naming convention.
 See [Stackoverflow](http://stackoverflow.com/questions/6273892/android-package-name-convention).
+
 3. From a terminal, cd into the folder just created.  (You should see a file *config.xml*.)
 4. Add platforms.  Since I want Android, type
 ```bash
@@ -41,8 +41,7 @@ cordova platform add android --save
 7. (For this app only): To change HTTP headers in Ajax requests, simply include the headers 
 in the Ajax call in the function ```SearchForJobs()``` in 
 *usaMain.js*.  I store the headers with the API key in usaAPI.js for easy access.
-(Since this is a native app and not a web app, changing HTTP headers is no problem.)
-
+(Since this is a native app and not a web app, changing HTTP headers is no problem.)  
 (A side note: Cordova also enables you to access the device hardware
 features like the camera, gps, sensors, etc. )
 
@@ -50,8 +49,7 @@ features like the camera, gps, sensors, etc. )
 ```html
 <meta http-equiv="Content-Security-Policy" content="...">
 ```
-This gives you extra control over app security.
-
+This gives you extra control over app security.  
 See my comments at the top of my *index.html* file for more info and links
 to examples and documentation.
 9. Initializing Cordova: After the DOM is initialized, we need to 
@@ -73,8 +71,7 @@ $(document).ready(function(){
   app.initialize();
 });
 ```
-in *usaMain.js*.
-
+in *usaMain.js*.  
 Further references: Stackoverflow [1](http://stackoverflow.com/a/23201738),
 [2](http://stackoverflow.com/a/12576086),
 [3](http://stackoverflow.com/a/14109006), netbeans.org
@@ -101,6 +98,7 @@ See *usaMain.js* for details.
 ## Build the native app
 
 Now we can build and test the app:
+
 1. In a terminal, cd to the top level directory for the app.  (The directory containing config.xml.)
 2. Build the app from the terminal by typing:
 ```bash
@@ -115,7 +113,9 @@ Chrome address bar paste [chrome://inspect/#devices](chrome://inspect/#devices).
 listed under Remote Target--click *Inspect*.  You can now use the Chrome debugging tools.
 
 ## Transfer the app to your mobile device
+
 When you are ready to test the app on your Android device:
+
 1. Enable Developer options.  Then enable USB debugging.
 2. Connect the device via USB cable to the computer.  
 3. On the mobile device, change the USB option from *USB for charging* to *Transfer Files*.
@@ -124,7 +124,3 @@ When you are ready to test the app on your Android device:
 cordova run android --device
 ```
 This will install the app on the Android device and launch it.
-
-
-
-
