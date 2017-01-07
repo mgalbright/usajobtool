@@ -64,11 +64,11 @@ environments (e.g. Android, IOS, ...). See the
  is called from *index.js*.  However, since I use jQuery, and I want that 
  to happen only once the DOM is loaded, I call `app.initialize()` from 
  the end of  
-```javascript
- $(document).ready(function(){  
-   ...  
-   app.initialize();  
- });  
+ ```javascript
+  $(document).ready(function(){  
+    ...  
+    app.initialize();  
+  });  
  ```
  in *usaMain.js*.  
  Further references: Stackoverflow [1](http://stackoverflow.com/a/23201738),
