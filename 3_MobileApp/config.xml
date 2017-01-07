@@ -37,10 +37,12 @@
 
     <!--Use more restrictive permissions for deployment for added security.-->
     <!--The first only allows communication with the usajobs.gov api site,
-        the second only allows links to open from the usajobs site-->
+        the second only allows links to open from the usajobs site,
+        the third only allows links to open to the developer portal-->
 <!--UPDATE THESE TWO LINKs IF THE USAJOBS API ADDRESS CHANGES-->
     <access origin="https://data.usajobs.gov/api/*" />
     <allow-intent href="https://www.usajobs.gov/*" />
+    <allow-intent href="https://developer.usajobs.gov/"/>
     <!--====================================================================-->
     <platform name="android">
         <allow-intent href="market:*" />

@@ -14,6 +14,7 @@
     <content src="index.html" />
     <access origin="https://data.usajobs.gov/api/*" />
     <allow-intent href="https://www.usajobs.gov/*" />
+    <allow-intent href="https://developer.usajobs.gov/" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
 </widget>
