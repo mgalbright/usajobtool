@@ -5,7 +5,7 @@ to retrieve data from the Usajobs.gov API.
 (Python/Flask changes HTTP headers to add the API key 
 which enables the connection to the Usajobs.gov API.)
 
-Try the app here [usajobtool](https://usajobtool.herokuapp.com/)  
+Try the app here: [usajobtool](https://usajobtool.herokuapp.com/)  
 (It's hosted on a free heroku account, so it could be sluggish.)
  
 
