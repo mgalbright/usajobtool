@@ -4,11 +4,7 @@ A web app for searching usajobs.gov
 
 # Quick Start
 
-1. Clone this git repository
-2. Read *1_WebExtension/README.md* to learn how to install
-the browser extension from *1_WebExtension/WebExtension* into either Chrome or Firefox.
-Once it's installed, open *1_WebExtension/Webapp/index.html* in your browser 
-and begin your job search.
+I have deployed the Flask version of to heroku--try it [here](https://usajobtool.herokuapp.com/).  (Note: I'm using a free heroku account, so the page's responsiveness may be sluggish.)
 
 # Background
 
