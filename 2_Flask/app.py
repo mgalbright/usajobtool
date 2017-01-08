@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def loac():
+def load():
   """Render the html page.  I use send_static_file since I don't need
      templating."""
   return current_app.send_static_file('index.html')
