@@ -4,9 +4,11 @@ This folder contains a Usajobs search website (written in Flask)
 to retrieve data from the Usajobs.gov API.
 (Python/Flask changes HTTP headers to add the API key 
 which enables the connection to the Usajobs.gov API.)
+
+Here is an online version of this app (hosted on a free heroku account):  [usajobtool](https://usajobtool.herokuapp.com/)
  
 
-To test this web app:
+To test this web app on your local computer:
 
 1. Download this git repository if you have not already done so.
 2. Request a free API key from the usajobs.gov [developer site](https://developer.usajobs.gov/APIRequest/Index).
