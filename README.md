@@ -18,7 +18,7 @@ tool) would return results for auto mechanics (who change 'spark' plugs).
 To improve user experiences, in 2015 I made version 1 of this tool--a cross-platform, 
 mobile-friendly web app for searching usajobs.gov. 
 The app allowed users to search for jobs using the usagovs.gov open 
-[API](https://developer.usajobs.gov/General), and it styled results using 
+[REST API](https://developer.usajobs.gov/General), and it styled results using 
 Bootstrap so they looked great on phones, tablets, and PCs. 
 As an added feature, the app included a configurable online machine learning
 algorithm to learn user preferences and show the most interesting jobs first.
