@@ -16,7 +16,7 @@ To test this web app on your local computer:
  Enter your API key information in *2_Flaskl/app.py*.
 3. To run the app locally (for testing only), open a 
  terminal to the folder containing app.py and run  
- ```python
+ ```
   python app.py
   ```  
  Flask will launch a simple web server on your machine.  Make note of the 
