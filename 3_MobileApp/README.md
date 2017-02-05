@@ -17,11 +17,11 @@ development tools for Cordova and Android.)
 1. Download this git repository if you have not already done so.
 2. From a terminal cd into *3_MobileApp/*
 3. Build the project for Android: From the terminal type:  
- ```bash
+ ```
  cordova build android
  ```
 4. Run the project in an emulator:   
- ```bash
+ ```
  cordova emulate android
  ```  
  Note that you can debug the running program from Chrome:
@@ -32,7 +32,7 @@ development tools for Cordova and Android.)
     2. Connect your device to your PC via USB.
     3. On your phone, change the USB option from *USB for charging* to *Transfer Files*.
     4. From the terminal type:  
-        ```bash
+        ```
         cordova run android --device
         ```
 
