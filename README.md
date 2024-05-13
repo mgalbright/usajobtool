@@ -2,9 +2,7 @@
 
 A web app for searching usajobs.gov
 
-# Quick Start
-
-I have deployed the Flask version of this app to heroku--try it [here](https://usajobtool.herokuapp.com/).  (Note: I'm using a free heroku account, so the page could be sluggish.)
+(No longer maintained.)
 
 # Background
 
